@@ -2,11 +2,11 @@ apply plugin: 'com.android.library'
 apply plugin: 'maven-publish'
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 34  // ✅ Recommended: use latest stable
 
     defaultConfig {
-        minSdkVersion 14
-        targetSdkVersion 29
+        minSdkVersion 16     // ✅ Safer minimum (14 is very old)
+        targetSdkVersion 34  // ✅ Match compile SDK
         versionCode 1
         versionName "1.1.2"
     }
@@ -17,6 +17,18 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    // ✅ Required AndroidX dependencies to avoid missing class errors
+    api 'androidx.annotation:annotation:1.7.0'
+    api 'androidx.viewpager:viewpager:1.0.0'
+    api 'androidx.appcompat:appcompat:1.6.1'
 }
 
 afterEvaluate {
@@ -26,9 +38,9 @@ afterEvaluate {
                 def releaseComponent = components.findByName("release")
                 if (releaseComponent != null) {
                     from releaseComponent
-                    groupId = 'com.github.noblehouse2'
-                    artifactId = 'PdfViewPager'
-                    version = 'jitpack-fix'
+                    groupId = 'com.github.noblehouse2'     // ✅ Your GitHub username
+                    artifactId = 'PdfViewPager'            // ✅ JitPack artifact ID
+                    version = 'jitpack-fix'                // ✅ Tag this same name
                 } else {
                     println "⚠️ Release component not found. Skipping publication setup."
                 }
