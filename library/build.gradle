@@ -23,8 +23,11 @@ afterEvaluate {
     publishing {
         publications {
             release(MavenPublication) {
-                from components.findByName("release")
-                groupId = 'com.github.noblehouse2' // Your GitHub username
+                def releaseComponent = components.findByName("release")
+                if (releaseComponent != null) {
+                    from releaseComponent
+                }
+                groupId = 'com.github.noblehouse2'
                 artifactId = 'PdfViewPager'
                 version = 'jitpack-fix'
             }
