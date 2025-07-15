@@ -1,1 +1,6 @@
-include ':sample', ':library'
+def onJitpack = System.getenv("JITPACK") != null
+
+include ':library'
+if (!onJitpack) {
+    include ':sample'
+}
