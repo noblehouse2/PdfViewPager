@@ -22,14 +22,13 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-
-    kotlinOptions {
-        jvmTarget = "1.8"
-    }
+    // ❌ Remove this if you're not using Kotlin
+    // kotlinOptions {
+    //     jvmTarget = "1.8"
+    // }
 }
 
 dependencies {
-    // Required dependencies to avoid missing classes
     api 'androidx.viewpager:viewpager:1.0.0'
     api 'androidx.annotation:annotation:1.7.0'
     api 'androidx.appcompat:appcompat:1.6.1'
@@ -44,7 +43,7 @@ afterEvaluate {
                     from releaseComponent
                     groupId = 'com.github.noblehouse2'
                     artifactId = 'PdfViewPager'
-                    version = 'jitpack-fix8'
+                    version = 'jitpack-fix6'
                 } else {
                     println "⚠️ Release component not found. Skipping publication setup."
                 }
