@@ -26,10 +26,12 @@ afterEvaluate {
                 def releaseComponent = components.findByName("release")
                 if (releaseComponent != null) {
                     from releaseComponent
+                    groupId = 'com.github.noblehouse2'
+                    artifactId = 'PdfViewPager'
+                    version = 'jitpack-fix'
+                } else {
+                    println "⚠️ Release component not found. Skipping publication setup."
                 }
-                groupId = 'com.github.noblehouse2'
-                artifactId = 'PdfViewPager'
-                version = 'jitpack-fix'
             }
         }
     }
